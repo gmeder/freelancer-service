@@ -1,0 +1,97 @@
+tags:
+  -
+    name: freelancer
+paths:
+  /freelancers:
+    get:
+      operationId: GetFreelancers
+      tags:
+        - freelancer
+      responses:
+        '200':
+          $ref: '#/responses/GetFreelancersResponse'
+          x-oad-type: reference
+    x-oad-type: operation
+  '/freelancers/{freelancerId}':
+    get:
+      operationId: GetFreelancersById
+      tags:
+        - freelancer
+      responses:
+        '200':
+          $ref: '#/responses/GetFreelancerByIdResponse'
+          x-oad-type: reference
+    parameters:
+      -
+        name: freelancerId
+        in: path
+        required: true
+        type: integer
+        format: int32
+        x-oad-type: parameter
+    x-oad-type: operation
+responses:
+  GetFreelancersResponse:
+    description: 'Response of API Call GetFreelancers'
+    schema:
+      x-oad-type: array
+      type: array
+      items:
+        x-oad-type: reference
+        $ref: '#/definitions/Freelancer'
+    x-oad-type: response
+  GetFreelancerByIdResponse:
+    description: 'Response of API Call GetFreelancerById'
+    schema:
+      x-oad-type: reference
+      $ref: '#/definitions/Freelancer'
+    x-oad-type: response
+definitions:
+  Freelancer:
+    x-oad-type: object
+    type: object
+    title: 'Freelancer Model'
+    properties:
+      freelancerId:
+        x-oad-type: integer
+        type: integer
+        format: int32
+      firstName:
+        x-oad-type: string
+        type: string
+      lastName:
+        x-oad-type: string
+        type: string
+      emailAddress:
+        x-oad-type: string
+        type: string
+      skills:
+        x-oad-type: array
+        type: array
+        items:
+          x-oad-type: reference
+          $ref: '#/definitions/Skill'
+  Skill:
+    x-oad-type: object
+    type: object
+    title: 'Skill Model'
+    properties:
+      id:
+        x-oad-type: integer
+        type: integer
+        title: 'Skill Id'
+        format: int32
+      name:
+        x-oad-type: string
+        type: string
+      description:
+        x-oad-type: string
+        type: string
+info:
+  title: FreelancerAPI
+  version: 1.0.0
+host: '127.0.0.1:8082'
+basePath: /
+schemes:
+  - http
+swagger: '2.0'
