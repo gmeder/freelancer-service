@@ -1,15 +1,24 @@
 # Run project locally
 
- Create Postgresql DB
+## Clone dockerfile
+
+	$ git clone https://github.com/gmeder/postgres-freelancer.git
+
+## Build image
+
+	$ cd postgres-freelancer
+	$ docker build -t postgres-freelancer:latest .
+
+## Start container
 
 	$ docker run --name postgres-freelancer \
 	-e POSTGRES_USER=postgres \
 	-e POSTGRES_PASSWORD=postgres \
 	-e POSTGRES_DB=freelancerdb \
 	-p 5432:5432 \
-	-d postgres
+	-d postgres-freelancer
 
- Start App
+ ## Run service
 
 	$ mvn spring-boot:run
 	
@@ -25,9 +34,11 @@ getFreelancersById
 	
 # Run project on Openshift
 
+## Set oc context to the homework project
+
 	$ oc project homework
 	
-Create PostgreSQL Database
+## Create PostgreSQL Database
 	
 	$ oc new-app --name freelancer-db-service \
 	-e POSTGRES_USER=postgres \
@@ -36,11 +47,11 @@ Create PostgreSQL Database
 	https://github.com/gmeder/postgres-freelancer.git \
 	--strategy=docker
 
-Create ConfigMap
+## Create ConfigMap
 
 	$ oc create configmap freelancer-service --from-file=etc/application.properties
 
-Deploy Project	
+## Deploy Project	
 
 	$ mvn clean fabric8:deploy -Popenshift -DskipTests
 
