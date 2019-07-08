@@ -1,22 +1,13 @@
 # Run project locally
 
-## Clone dockerfile
-
-	$ git clone https://github.com/gmeder/postgres-freelancer.git
-
-## Build image
-
-	$ cd postgres-freelancer
-	$ docker build -t postgres-freelancer:latest .
-
 ## Start container
 
 	$ docker run --name postgres-freelancer \
-	-e POSTGRES_USER=postgres \
-	-e POSTGRES_PASSWORD=postgres \
-	-e POSTGRES_DB=freelancerdb \
+	-e POSTGRESQL_USER=freelancer \
+	-e POSTGRESQL_PASSWORD=freelancer \
+	-e POSTGRESQL_DATABASE=freelancerdb \
 	-p 5432:5432 \
-	-d postgres-freelancer
+	-d centos/postgresql-96-centos7
 
  ## Run service
 
@@ -40,12 +31,11 @@ getFreelancersById
 	
 ## Create PostgreSQL Database
 	
-	$ oc new-app --name freelancer-db-service \
-	-e POSTGRES_USER=postgres \
-	-e POSTGRES_PASSWORD=postgres \
-	-e POSTGRES_DB=freelancerdb \
-	https://github.com/gmeder/postgres-freelancer.git \
-	--strategy=docker
+	$ oc new-app --name=freelancer-db-service \
+    -e POSTGRESQL_USER=freelancer \
+    -e POSTGRESQL_PASSWORD=freelancer \
+    -e POSTGRESQL_DATABASE=freelancerdb \
+    centos/postgresql-96-centos7
 
 ## Create ConfigMap
 
