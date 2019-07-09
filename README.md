@@ -48,4 +48,10 @@ getFreelancersById
 ## Deploy Project	
 
 	$ mvn clean fabric8:deploy -Popenshift -DskipTests
+	
+# Test on Openshift (Shared Cluster 3.11)
+
+	$ curl http://freelancer.assignment-gmeder.apps.na311.openshift.opentlc.com/freelancers
+	$ curl http://freelancer.assignment-gmeder.apps.na311.openshift.opentlc.com/freelancers/123
+
 

@@ -33,4 +33,5 @@ How to run and test the service is described in README (Openshift and local)
 
 - Service is running on port 8082
 - Service connect to mongodb *localhost* on port *5432* with creds *postgres/postgres* and database *freelancerdb*
-- The project has no route defined for Openshift because in the arquitectura it is not supposed to be accessed directly from outside the cluster but alway using the API Gateway
+- The project has a route http://freelancer.assignment-gmeder.apps.na311.openshift.opentlc.com/
+
